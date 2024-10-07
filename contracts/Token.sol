@@ -7,7 +7,6 @@ pragma solidity ^0.8.9;
 // We import this library to be able to use console.log
 import "hardhat/console.sol";
 
-
 // This is the main building block for smart contracts.
 contract Token {
     // Some string type variables to identify the token.
@@ -23,7 +22,10 @@ contract Token {
     // A mapping is a key/value map. Here we store each account balance.
     mapping(address => uint256) balances;
 
-    // The Transfer event helps off-chain aplications understand
+    // A mapping to store data associated with an address
+    mapping(address => uint256) private storedData;
+
+    // The Transfer event helps off-chain applications understand
     // what happens within your contract.
     event Transfer(address indexed _from, address indexed _to, uint256 _value);
 
@@ -45,18 +47,7 @@ contract Token {
      */
     function transfer(address to, uint256 amount) external {
         // Check if the transaction sender has enough tokens.
-        // If `require`'s first argument evaluates to `false` then the
-        // transaction will revert.
         require(balances[msg.sender] >= amount, "Not enough tokens");
-
-        // We can print messages and values using console.log, a feature of
-        // Hardhat Network:
-        console.log(
-            "Transferring from %s to %s %s tokens",
-            msg.sender,
-            to,
-            amount
-        );
 
         // Transfer the amount.
         balances[msg.sender] -= amount;
@@ -76,5 +67,10 @@ contract Token {
         return balances[account];
     }
 
-    // เขียนฟังก์ชันสำหรับแสดงข้อมูล totalSupply ด้านล่างและเรียกใช้งานเพื่อแสดงให้หน้าแรกของ UI
+    /**
+     * Function to retrieve token information.
+     */
+    function getTokenInfo() external view returns (string memory, string memory, uint256) {
+        return (name, symbol, totalSupply); 
+    }
 }

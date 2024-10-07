@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "description": "A boilerplate repository to get you started with Hardhat and Ethereum development",
   "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
     "test": "hardhat test"
   },
   "repository": {
@@ -25,8 +27,13 @@
     "@nomiclabs/hardhat-etherscan": "^3.1.4",
     "chai": "^4.3.7",
     "ethers": "^5.7.2",
-    "hardhat": "^2.12.5",
+    "hardhat": "^2.22.12",
     "hardhat-gas-reporter": "^1.0.9",
     "solidity-coverage": "^0.8.2"
+  },
+  "dependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-scripts": "^5.0.1"
   }
 }
